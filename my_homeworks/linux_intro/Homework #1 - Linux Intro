@@ -1,0 +1,102 @@
+1. Create `cursor` directory and `test.txt` file
+
+mkdir cursor
+touch test.txt
+
+2. Copy `test.txt` file to `cursor` directory
+cp test.txt cursor/
+
+3. List the files in the current directory, in “long listing format”.
+
+ls -l  
+
+4. List all files, including hidden files, in the your home (~) directory, in reverse alphabetical order and long listing format.
+
+ls ~ -lar
+
+5*. Rename the file `test.txt` to `new_test.txt` and then create one more `empty_file.txt`
+Hint: Renaming is done using the same command as moving.
+
+mv test.txt  new_test.txt
+touch empty_file.txt 
+
+6. Delete the files empty_file.txt and new_test.txt. Note that your answer must be a single command and not multiple commands.
+Hint: Many commands can accept more than one parameter.
+
+rm empty_file.txt new_test.txt 
+
+Create hw.txt file under cursor directory
+
+touch cursor/hw.txt 
+
+7*. Set the file hw.txt to have a last-modified date of January 1, 2020, 4:15am.
+Hint: The man page for the proper command describes the timestamp 'STAMP' format to use. Look for this!
+Also note: Linux is case-sensitive when you are specifying file or directory names.
+You can use a * (asterisk) as a “wild-card” character to specify a group of files.
+For example, *foo means all files whose names end with foo, and foo* means all files whose names begin with foo.
+You can use a wildcard in the middle of a file name, such as foo*bar for all files that start with foo and end with bar.
+
+touch -m -t 202001010415 hw.txt
+
+Create hw.sh, hw1.sh, hw2.sh, hw1.txt under the cursor directory
+
+cd cursor/
+touch hw.sh, hw1.sh, hw2.sh, hw1.txt
+
+8. List all files (only with the extension .sh) in the current directory.
+Note that the ls command can accept more than one parameter for what files you want it to list.
+Hint: Use grep
+
+ls | grep .sh
+
+9. Copy all the text files (files whose names end with .txt) from the current folder to the new directory `text_files`.
+
+mkdir text_files
+cp *.txt text_files
+
+10. Write `cursor` to the hw.txt file by using echo.
+
+echo cursor > hw.txt
+
+11. Display the contents of hw.txt
+
+cat hw.txt
+
+12. Change the permissions to 0 for current user and try to Display contents again.
+
+chmod 064 hw.txt
+cat hw.txt
+cat: hw.txt: Permission denied
+
+13. Change the permission to rwx for current user only and try again.
+
+chmod 764 hw.txt
+cat hw.txt
+cursor
+
+14. Write from 1 to 10 in each line in hw.txt by using text reader.
+
+🔍 Self Discovery: The head and tail commands output only the first or last few lines (respectively) of a file to the terminal.
+
+vi hw.txt
+Press A
+enter 1 to 10 
+Press esc
+:wq
+
+15. Display only the first 7 lines of the file hw.txt from the current directory on the terminal.
+
+head -n 7 hw.txt
+
+16*. Create test.sh with echo 'Hello' and make it executable
+
+echo 'echo "Hello"'>test.sh 
+chmod 764 test.sh
+
+17*. Execute test.sh
+
+./test .sh
+
+18. Search for a files with .sh in your working directory.
+
+find *.sh

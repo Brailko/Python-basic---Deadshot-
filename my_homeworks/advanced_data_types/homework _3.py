@@ -55,12 +55,12 @@ print(f"Anna has {apple} apples and {peache} peaches.")
 
 # 10. With % operator
 apple = 2
-peache = 9
-print("Anna has %d apples and %d peaches." % (apple, peache))
+peache =9
+print("Anna has %s apples and %s peaches." % (apple, peache))
 # Anna has 2 apples and 9 peaches.
 
 # 11*. With variable substitutions by name (hint: by using dict)
-print("Anna has %(apple_count)s apples and %(peache_count)d peaches." % {'apple_count': '1', 'peache_count': 6})
+print("Anna has %(apple_count)d apples and %(peache_count)d peaches." % {'apple_count': 1, 'peache_count': 6})
 # Anna has 1 apples and 6 peaches.
 
 # 12. Convert (1) to list comprehension

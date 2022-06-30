@@ -14,6 +14,10 @@ class Vehicle:
 
 # 2. Create classes Bus and Car that inherit Vehicle.
 class Bus(Vehicle):
+    def __init__(self, name, brand, max_speed, total_capacity):
+        super().__init__(name, brand, max_speed, total_capacity)
+
+
     def __str__(self):
         return f'{self.brand} {self.name} has maximum speed {self.max_speed} and can accommodate {self.total_capacity} passengers'
 
@@ -22,10 +26,11 @@ class Bus(Vehicle):
         return self.total_capacity // 3
 
 
-    def count_of_passengers(self, used_capacity):
+    def used_capacity_count(self, used_capacity):
         if used_capacity > self.total_capacity:
             return f'Error: number of passengers {used_capacity}, and seats in {self.brand} {self.name} only {self.total_capacity}. You need to order another vehicle'
         else:
+            self.used_capacity = used_capacity
             return f'Go to trip!!!'
 
 
@@ -34,7 +39,8 @@ class Bus(Vehicle):
 
 
 class Car(Vehicle):
-    pass
+    def __init__(self, name, brand, max_speed, total_capacity):
+        super().__init__(name, brand, max_speed, total_capacity)
 
 
 # 3. Create 3 car objects and 2 bus objects
@@ -69,9 +75,9 @@ print(f'The cost of a trip by {bus_2.brand} {bus_2.name} is {bus_2.fare()}$')
 # result --> The cost of a trip by Iveco Mago is 3410$
 
 # 6. Add used_capacity attribute for Bus
-print(bus_1.count_of_passengers(18))
+print(bus_1.used_capacity_count(18))
 # result --> Error: number of passengers 18, and seats in Mercedes Sprinter only 16. You need to order another vehicle
-print(bus_2.count_of_passengers(26))
+print(bus_2.used_capacity_count(26))
 # result --> Go to trip!!!
 
 # 7. Write a magic method to Bus that would be triggered when len() function is called. Play around with other dunder methods

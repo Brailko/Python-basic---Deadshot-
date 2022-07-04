@@ -38,7 +38,14 @@ class Bus(Vehicle):
         return self.total_capacity * 110
 
 
-class Car(Vehicle):
+class Engine():
+    volume = 1.6
+
+    def get_volume(self):
+        return self.volume
+
+
+class Car(Vehicle, Engine):
     def __init__(self, name, brand, max_speed, total_capacity):
         super().__init__(name, brand, max_speed, total_capacity)
 
@@ -92,12 +99,6 @@ print(f'The length of the {bus_2.name} is {len(bus_2)} metrs')
 
 # 8. Create class Engine with attribute volume and method get_volume() that will return volume.
 # 9. Inherit Engine by Car class.
-class Engine(Car):
-    volume = 1.6
-
-    def get_volume(self):
-        return self.volume
-
 # 10. Check what is inheritance order of the Car class
-print(f"Engine is inherit of Car - {issubclass(Engine, Car)}")
-# result --> Engine is inherit of Car - True
+print(f"Engine is inherit of Car - {issubclass(Car, Engine)}")
+# result --> Car is inherit of Engine - True

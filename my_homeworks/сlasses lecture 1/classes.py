@@ -78,7 +78,6 @@ print(f'The cost of a trip by {bus_2.brand} {bus_2.name} is {bus_2.fare()}$')
 
 # 6. Add used_capacity attribute for Bus
 bus_3 = Bus('Sprinter', 'Mercedes', 170, 16, 18)
-print(bus_3.used_capacity_count(18))
 # result --> Exception: Error - number of passengers 18, and seats in Mercedes Sprinter only 16. You need to order another vehicle
 
 # 7. Write a magic method to Bus that would be triggered when len() function is called. Play around with other dunder methods

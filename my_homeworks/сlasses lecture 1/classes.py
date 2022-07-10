@@ -14,8 +14,12 @@ class Vehicle:
 
 # 2. Create classes Bus and Car that inherit Vehicle.
 class Bus(Vehicle):
-    def __init__(self, name, brand, max_speed, total_capacity):
+    def __init__(self, name, brand, max_speed, total_capacity, used_capacity):
         super().__init__(name, brand, max_speed, total_capacity)
+        if used_capacity > self.total_capacity:
+            raise Exception(f"Error - number of passengers {used_capacity}, and seats in {self.brand} {self.name} only {self.total_capacity}. You need to order another vehicle")
+        else:
+            self.used_capacity = used_capacity
 
 
     def __str__(self):
@@ -26,19 +30,17 @@ class Bus(Vehicle):
         return self.total_capacity // 3
 
 
-    def used_capacity_count(self, used_capacity):
-        if used_capacity > self.total_capacity:
-            return f'Error: number of passengers {used_capacity}, and seats in {self.brand} {self.name} only {self.total_capacity}. You need to order another vehicle'
-        else:
-            self.used_capacity = used_capacity
-            return f'Go to trip!!!'
-
-
     def fare(self):
         return self.total_capacity * 110
 
 
-class Car(Vehicle):
+class Engine():
+    volume = 1.6
+
+    def get_volume(self):
+        return self.volume
+
+class Car(Vehicle, Engine):
     def __init__(self, name, brand, max_speed, total_capacity):
         super().__init__(name, brand, max_speed, total_capacity)
 
@@ -47,8 +49,8 @@ class Car(Vehicle):
 car_1 = Car('Coupe', 'Smart', 135, 1)
 car_2 = Car('Passat', 'Volkswagen', 232, 4)
 car_3 = Car('Grand Scenic', 'Renault', 190, 6)
-bus_1 = Bus('Sprinter', 'Mercedes', 170, 16)
-bus_2 = Bus('Mago', 'Iveco', 130, 31)
+bus_1 = Bus('Sprinter', 'Mercedes', 170, 16, 14)
+bus_2 = Bus('Mago', 'Iveco', 130, 31, 26)
 
 
 # 4. Check: if car_1 is instance of Car.  if car_2 is instance of Vehicle. if bus_1 is instance of Car.
@@ -75,10 +77,9 @@ print(f'The cost of a trip by {bus_2.brand} {bus_2.name} is {bus_2.fare()}$')
 # result --> The cost of a trip by Iveco Mago is 3410$
 
 # 6. Add used_capacity attribute for Bus
-print(bus_1.used_capacity_count(18))
-# result --> Error: number of passengers 18, and seats in Mercedes Sprinter only 16. You need to order another vehicle
-print(bus_2.used_capacity_count(26))
-# result --> Go to trip!!!
+bus_3 = Bus('Sprinter', 'Mercedes', 170, 16, 18)
+print(bus_3.used_capacity_count(18))
+# result --> Exception: Error - number of passengers 18, and seats in Mercedes Sprinter only 16. You need to order another vehicle
 
 # 7. Write a magic method to Bus that would be triggered when len() function is called. Play around with other dunder methods
 print(bus_1)
@@ -91,13 +92,11 @@ print(f'The length of the {bus_2.name} is {len(bus_2)} metrs')
 # result --> The length of the Mago is 10 metrs
 
 # 8. Create class Engine with attribute volume and method get_volume() that will return volume.
-# 9. Inherit Engine by Car class.
-class Engine(Car):
-    volume = 1.6
-
-    def get_volume(self):
-        return self.volume
+print(f"Engine volume = {Engine.volume}")
 
 # 10. Check what is inheritance order of the Car class
-print(f"Engine is inherit of Car - {issubclass(Engine, Car)}")
+print(f"Car is inherit of Engine - {issubclass(Car, Engine)}")
 # result --> Engine is inherit of Car - True
+
+
+

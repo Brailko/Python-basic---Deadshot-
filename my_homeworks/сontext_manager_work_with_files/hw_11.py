@@ -12,6 +12,7 @@
 import csv
 from datetime import datetime
 import csv
+import json
 
 
 class My_Manager():
@@ -47,10 +48,10 @@ with My_Manager('Python.txt', 'w') as manager:
 
 def translate_txt_in_csv():
     with open('logs.txt', 'r') as f_txt:
+        lines = [line.split() for line in f_txt]
         with open('logs.csv', 'w') as f_csv:
-            writer = csv.writer(f_csv, delimiter=' ')
-            for str_txt in f_txt:
-                writer.writerow(str_txt.split())
+            writer = csv.writer(f_csv)
+            writer.writerows(lines)
 
 translate_txt_in_csv()
 
@@ -63,7 +64,23 @@ translate_txt_in_csv()
 #         "last_time_opened": "2022-07-11 22:17:59.782551"
 #     }
 # }
+def writer_info_from_csv_to_json():
+    with open('logs.csv', 'r') as f_csv:
+        reader = csv.reader(f_csv)
+        dict_for_json ={}
+        for line in reader:
+            if line == []:
+                continue
+            elif line[2] not in dict_for_json.keys() and line[3] == 'OPEN':
+                dict_for_json[line[2]] = {"count": 1, "last_time_opened": line[0]+' '+line[1]}
+            elif line[2] in dict_for_json.keys() and line[3] == 'OPEN':
+                dict_for_json[line[2]]["count"] += 1
+                dict_for_json[line[2]]["last_time_opened"] = line[0]+' '+line[1]
+    with open('logs.json', 'w') as f_json:
+        json.dump(dict_for_json, f_json,indent=4)
+    return dict_for_json
 
+writer_info_from_csv_to_json()
 
 # P.S. Якщо щось не зрозуміло по умові задачі, то робіть як вважаєте за доцільно,
 # користуючись здоровим глуздом звичайно ж)

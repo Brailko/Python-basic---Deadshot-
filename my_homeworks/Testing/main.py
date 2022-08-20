@@ -9,9 +9,18 @@ class VacuumCleaner():
     volume_water_tank = 340
 
     def __init__(self, full_garbage_tank, full_water_tank, battery_charge, id):
-        self.full_garbage_tank = full_garbage_tank
-        self.full_water_tank = full_water_tank
-        self.battery_charge = battery_charge
+        if 0 <= full_garbage_tank <= self.volume_garbage_tank:
+            self.full_garbage_tank = full_garbage_tank
+        else:
+            raise ValueError
+        if 0 <= full_water_tank <= self.volume_water_tank:
+            self.full_water_tank = full_water_tank
+        else:
+            raise ValueError
+        if 0 <= battery_charge <= 100:
+            self.battery_charge = battery_charge
+        else:
+            raise ValueError
         self.id = id
 
 
@@ -71,9 +80,10 @@ class VacuumCleaner():
                 raise exceptions.EmptyWatterTank('Empty water tank. Pour water into the tank')
 
 
-thomas = VacuumCleaner(1450, 59, 10, "VR-1234183")
+# thomas = VacuumCleaner(1450, 59, 10, "VR-1234183")
+thomas = VacuumCleaner(0, 340, 100, "VR-1234183")
 
 print(thomas.info)
 
-print(thomas.start_cleaning(True, 3))
+print(thomas.start_cleaning(False, 48))
 

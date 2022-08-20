@@ -43,3 +43,10 @@ ERROR:root:Low battery. It is necessary to charge the device
 INFO:root:Identifier - VR-1234183; power - 4%; water tank - 100%; trash tank - 33% FINISHED CLEANING
 INFO:root:Identifier - VR-1234183; power - 100%; water tank - 100%; trash tank - 0% STARTED CLEANING
 INFO:root:Identifier - VR-1234183; power - 4%; water tank - 100%; trash tank - 32% FINISHED CLEANING
+INFO:root:Identifier - VR-1234183; power - 50%; water tank - 18%; trash tank - 97% STARTED CLEANING
+ERROR:root:The garbage tank is full. Empty the tank
+INFO:root:Identifier - VR-1234183; power - 36%; water tank - 18%; trash tank - 100% FINISHED CLEANING
+INFO:root:Identifier - VR-1234183; power - 50%; water tank - 18%; trash tank - 97% STARTED CLEANING
+INFO:root:Identifier - VR-1234183; power - 44%; water tank - 18%; trash tank - 97% FINISHED CLEANING
+INFO:root:Identifier - VR-1234183; power - 50%; water tank - 18%; trash tank - 97% STARTED CLEANING
+INFO:root:Identifier - VR-1234183; power - 44%; water tank - 0%; trash tank - 99% FINISHED CLEANING

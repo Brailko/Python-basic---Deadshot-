@@ -80,10 +80,9 @@ class VacuumCleaner():
                 raise exceptions.EmptyWatterTank('Empty water tank. Pour water into the tank')
 
 
-# thomas = VacuumCleaner(1450, 59, 10, "VR-1234183")
-thomas = VacuumCleaner(0, 340, 100, "VR-1234183")
+thomas = VacuumCleaner(1450, 60, 50, "VR-1234183")
 
 print(thomas.info)
 
-print(thomas.start_cleaning(False, 48))
+print(thomas.start_cleaning(True, 3))
 
